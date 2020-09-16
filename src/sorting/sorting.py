@@ -33,25 +33,11 @@ def merge(arrA, arrB):
 # TO-DO: implement the Merge Sort function below recursively
 def merge_sort(arr):
     # Your code here
-    n = len(arr)
-    if n < 2:
-        return
-    mid = n // 2
-    start = 0
-    end = n-1
-    left = []
-    right = []
-    #breakpoint()
-    if start < end:
-        for i in range(mid):
-            left.append(arr[i])
+    if len(arr) > 1:
+        left = merge_sort(arr[0: len(arr) // 2])
+        right = merge_sort(arr[len(arr) // 2 :])
+        arr = merge(left, right)
 
-        for j in range(mid, n):
-            right.append(arr[j])
-
-    arr = merge(left, right)
-
-    arr = merge_sort(arr)
 
     return arr
 
@@ -68,9 +54,3 @@ def merge_in_place(arr, start, mid, end):
 def merge_sort_in_place(arr, l, r):
     # Your code here
     pass
-# arr1 = [1, 5, 8, 4, 2]
-# arr2 = [9, 6, 0, 3, 7]
-# print(merge(arr1, arr2))
-
-arr = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
-print(merge_sort(arr))
